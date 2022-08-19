@@ -2,10 +2,11 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { graphqlHTTP } from "express-graphql";
+import { context } from "./context";
+import { schema } from "./schema";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-const schema = {}
 app.use(morgan("dev"));
 
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 app.use('/graphql', graphqlHTTP({
     graphiql: true,
     schema: schema,
+    context: context,
 }));
 
 app.listen(PORT, () => {
