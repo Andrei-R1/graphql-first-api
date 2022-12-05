@@ -11,6 +11,7 @@ const root = resolvers;
 
 app.use(morgan("dev"));
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("- API is correctly working -");
